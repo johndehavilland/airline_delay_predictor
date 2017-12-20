@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 39,
+  "id": "6c5a84e1-2c53-414d-8d0d-02e48fd3b668",
+  "activities": [
+    {
+      "id": "af7aa7f6-cba0-4824-a6c8-c8927abbed31",
+      "name": "DelayedFlights",
+      "blocks": [
+        {
+          "id": "7475d4b5-7d20-41e6-8670-5e5e993c0df8",
+          "type": "Microsoft.DPrep.DataSourceBlock",
+          "arguments": {
+            "path": {
+              "target": 0,
+              "resourceDetails": [
+                {
+                  "path": "/Users/johndehavilland/Downloads/airlinedelaycauses/DelayedFlights.csv"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "c2a96190-116a-40e1-a1d7-6f0d5aa1cabc",
+          "type": "Microsoft.DPrep.ParseDelimitedBlock",
+          "arguments": {
+            "preview": false,
+            "columnHeadersMode": 1,
+            "separator": ",",
+            "fileEncoding": 0,
+            "skipRowsMode": 0,
+            "handleQuotedLineBreaks": false
+          }
+        },
+        {
+          "id": "bd439caa-f4cb-4875-b858-3f22d26396ca",
+          "type": "Microsoft.DPrep.SetColumnTypesBlock",
+          "arguments": {
+            "columnConversion": [
+              {
+                "columnId": "DayofMonth",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "ArrTime",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "ArrDelay",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Distance",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "WeatherDelay",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Year",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "CRSDepTime",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "FlightNum",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "AirTime",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Cancelled",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "CarrierDelay",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "LateAircraftDelay",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Month",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "DayOfWeek",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "CRSArrTime",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "CRSElapsedTime",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "TaxiIn",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Diverted",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "SecurityDelay",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Column1",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "DepTime",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "ActualElapsedTime",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "DepDelay",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "TaxiOut",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "NASDelay",
+                "typeProperty": 3,
+                "typeArguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "id": "5d7e040a-787e-4bda-a6a7-0b8fc0c6e047",
+          "type": "Microsoft.DPrep.SampleBlock",
+          "arguments": {
+            "samples": [
+              {
+                "sampleId": "51fbeb1a-2b00-455a-ba45-bbcfbfcd7438",
+                "sampleRevision": "decceb5a-15cb-47ab-98d0-cc2c63e47e0a",
+                "sampleName": "Top 10000",
+                "sampleRunner": {
+                  "id": null,
+                  "type": 0
+                },
+                "remoteGeneratorProperties": {},
+                "sampleStrategy": 0,
+                "topArguments": {
+                  "sampleCount": 10000
+                },
+                "randomNArguments": {
+                  "sampleCount": 10000
+                },
+                "randomPercentArguments": {
+                  "probability": 0.1
+                },
+                "allowAutoGen": true,
+                "isDisabled": false
+              }
+            ],
+            "activeSample": "51fbeb1a-2b00-455a-ba45-bbcfbfcd7438"
+          }
+        },
+        {
+          "id": "fa7c4b16-9922-4b72-bc47-cf5289454a5e",
+          "type": "Microsoft.DPrep.HandlePathColumnBlock",
+          "arguments": {
+            "pathColumnOperation": 0
+          }
+        }
+      ],
+      "inspectors": [
+        {
+          "id": "2ca2f0b6-60a3-4bf1-b500-620ccfb03608",
+          "type": "Microsoft.DPrep.DataQualityInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "af7aa7f6-cba0-4824-a6c8-c8927abbed31",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 1,
+              "referencedStepId": null,
+              "fallback": 1
+            },
+            "anonymousSteps": null
+          },
+          "isBackground": false
+        },
+        {
+          "id": "55d380ce-82c4-4d34-8277-5b51defe257d",
+          "type": "Microsoft.DPrep.DataProfileInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "af7aa7f6-cba0-4824-a6c8-c8927abbed31",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 0,
+              "referencedStepId": "fa7c4b16-9922-4b72-bc47-cf5289454a5e",
+              "fallback": 1
+            },
+            "anonymousSteps": null
+          },
+          "isBackground": true
+        }
+      ]
+    }
+  ],
+  "runConfigurations": []
+}
